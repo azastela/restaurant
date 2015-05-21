@@ -13,9 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20140803133136) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "reservations", force: true do |t|
     t.datetime "start_time"
     t.datetime "end_time"

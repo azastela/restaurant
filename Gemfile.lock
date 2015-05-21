@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/razum2um/validates_timeliness.git
+  revision: b195081f6aeead619430ad38b0f0dfe4d4981252
+  ref: b195081f6aeead619430ad38b0f0dfe4d4981252
+  specs:
+    validates_timeliness (3.0.14)
+      timeliness (~> 0.3.7)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -27,8 +35,17 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    annotate (2.5.0)
+      rake
     arel (5.0.1.20140414130214)
+    autoprefixer-rails (5.1.11)
+      execjs
+      json
+    bootstrap-sass (3.3.4.1)
+      autoprefixer-rails (>= 5.0.0.1)
+      sass (>= 3.2.19)
     builder (3.2.2)
+    coderay (1.0.9)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -39,8 +56,13 @@ GEM
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.2.1)
-    factory_girl (4.4.0)
+    factory_girl (4.2.0)
       activesupport (>= 3.0.0)
+    factory_girl_rails (4.2.1)
+      factory_girl (~> 4.2.0)
+      railties (>= 3.0.0)
+    haml (4.0.6)
+      tilt
     hike (1.2.3)
     i18n (0.6.11)
     jbuilder (2.1.3)
@@ -53,11 +75,17 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    method_source (0.8.2)
     mime-types (1.25.1)
     minitest (5.4.0)
     multi_json (1.10.1)
+    mysql2 (0.3.15)
     pg (0.17.1)
     polyglot (0.3.5)
+    pry (0.9.12.2)
+      coderay (~> 1.0.5)
+      method_source (~> 0.8)
+      slop (~> 3.4)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -79,8 +107,14 @@ GEM
     rake (10.3.2)
     rdoc (4.1.1)
       json (~> 1.4)
+    rspec (3.0.0)
+      rspec-core (~> 3.0.0)
+      rspec-expectations (~> 3.0.0)
+      rspec-mocks (~> 3.0.0)
     rspec-core (3.0.3)
       rspec-support (~> 3.0.0)
+    rspec-expect_it (2.0.0)
+      rspec (>= 2.14.0)
     rspec-expectations (3.0.3)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.0.0)
@@ -104,6 +138,12 @@ GEM
     sdoc (0.4.0)
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)
+    shoulda-matchers (2.5.0)
+      activesupport (>= 3.0.0)
+    simple_form (3.1.0)
+      actionpack (~> 4.0)
+      activemodel (~> 4.0)
+    slop (3.4.6)
     spring (1.1.3)
     sprockets (2.11.0)
       hike (~> 1.2)
@@ -128,23 +168,30 @@ GEM
     uglifier (2.5.3)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
-    validates_timeliness (3.0.14)
-      timeliness (~> 0.3.6)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  annotate
+  bootstrap-sass
   coffee-rails (~> 4.0.0)
-  factory_girl (~> 4.4.0)
+  factory_girl_rails
+  haml
   jbuilder (~> 2.0)
   jquery-rails
+  minitest
+  mysql2
   pg
+  pry
   rails (= 4.1.4)
-  rspec-rails (~> 3.0.2)
+  rspec-expect_it
+  rspec-rails
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
+  shoulda-matchers
+  simple_form
   spring
   turbolinks
   uglifier (>= 1.3.0)
-  validates_timeliness (~> 3.0.14)
+  validates_timeliness!
