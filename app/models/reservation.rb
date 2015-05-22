@@ -23,8 +23,8 @@ class Reservation < ActiveRecord::Base
   	reservations = Reservation.where("start_time <= :end_time AND :start_time <= end_time AND table_id = :table_id",
               		end_time: end_time, start_time: start_time, table_id: table_id)
 
-  	errors.add(:base, 'This table already reseved for this time') if reservations.size > 0
+  	errors.add :start_time, :time_overlapped if reservations.size > 0
   end
 
-  TABLES_COUNT = 10.freeze
+  TABLES_COUNT = 5.freeze
 end

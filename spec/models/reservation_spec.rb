@@ -45,7 +45,7 @@ RSpec.describe Reservation, :type => :model do
 
       it 'adds correct error message' do
         subject.valid?
-        expect(subject.errors[:base]).to include 'This table already reseved for this time'
+        expect(subject.errors[:start_time]).to include I18n.t('activerecord.errors.models.reservation.time_overlapped')
       end
     end
   end
