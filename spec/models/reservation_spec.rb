@@ -17,58 +17,36 @@ RSpec.describe Reservation, :type => :model do
   expect_it{ to validate_presence_of(:start_time) }
   expect_it{ to validate_presence_of(:end_time) }
 
-  # before { @reservation = Reservation.new(start_time: "03-08-2015 16:00", end_time: "03-08-2015 18:00", table_id: 10 ) }
+  describe 'initial time validation' do
+    let(:start_time){ Time.now + 1.hour }
+    let(:end_time){ Time.now + 2.hours }
 
-  # subject { @reservation }
+    subject(:reservation){ build :reservation, start_time: start_time, end_time: end_time }
 
-  # it { should respond_to(:start_time)}
-  # it { should respond_to(:end_time)}
-  # it { should respond_to(:table_id)}
+    context 'when start time is in past' do
+      let(:start_time){ 1.hour.ago }
+      expect_it { not_to be_valid }
+    end
 
-  # it { should be_valid }
-
-  # describe "when start time is not present" do
-  # 	before { @reservation.start_time = " " }
-  # 	it { should_not be_valid }
-  # end
-
-  # describe "when end time is not present" do
-  # 	before { @reservation.end_time = " " }
-  # 	it { should_not be_valid }
-  # end
-
-  # describe "when table id is not present" do
-  # 	before { @reservation.table_id = " " }
-  # 	it { should_not be_valid }
-  # end
-
-  describe "when time is intersected on update" do
-    let!(:other_reservation){ create :reservation, start_time: Time.now + 30.minutes }
-    subject{ other_reservation }
-
-    expect_it { not_to be_valid }
-
-    it 'adds correct error message' do
-      subject.valid?
-      expect(subject.errors[:base]).to include 'This table already reseved for this time'
+    context 'when end time before start time' do
+      let(:start_time){ Time.now + 3.hours }
+      let(:end_time){ Time.now + 2.hours }
+      expect_it { not_to be_valid }
     end
   end
 
+  describe 'time overlapping validation' do
+    let!(:reservation1){ create :reservation, table_id: 10 }
 
-  # describe "when time is intersected on create" do
+    subject(:reservation2){ build :reservation, table_id: 10 }
 
-  #   before do
-  #     @other_reservation = Reservation.new(start_time: "03-08-2015 17:00", end_time: "03-08-2015 18:00", table_id: 10 )
-  #     @other_reservation.save
-  #   end
+    context 'when time intersected' do
+      expect_it { not_to be_valid }
 
-  #   it "is invalid" do
-  #     @other_reservation.should_not be_valid
-  #   end
-
-  #   it 'adds correct error message' do
-  #     @other_reservation.valid?
-  #     @other_reservation.errors[:base].should include "Times overlapped"
-  #   end
-  # end
+      it 'adds correct error message' do
+        subject.valid?
+        expect(subject.errors[:base]).to include 'This table already reseved for this time'
+      end
+    end
+  end
 end
