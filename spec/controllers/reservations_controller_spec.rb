@@ -52,21 +52,6 @@ RSpec.describe ReservationsController, :type => :controller do
     end
   end
 
-  describe "GET new" do
-    it "assigns a new reservation as @reservation" do
-      get :new, {}, valid_session
-      expect(assigns(:reservation)).to be_a_new(Reservation)
-    end
-  end
-
-  describe "GET edit" do
-    it "assigns the requested reservation as @reservation" do
-      reservation = Reservation.create! valid_attributes
-      get :edit, {:id => reservation.to_param}, valid_session
-      expect(assigns(:reservation)).to eq(reservation)
-    end
-  end
-
   describe "POST create" do
     describe "with valid params" do
       it "creates a new Reservation" do

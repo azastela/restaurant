@@ -1,0 +1,22 @@
+.container {
+  background: url(/assets/floor.png) repeat;
+}
+.restaurant-table {
+  background: url(/assets/table.png) no-repeat;
+  height: 480px;
+  width: 440px;
+  margin: 0 auto;
+  padding-top: 10px;
+}
+.reservation-table {
+  width: 450px !important;
+}
+.reservation-table tbody>tr>td {
+  position: relative;
+}
+.datetimepicker {
+  width: 160px !important;
+}
+.concealed {
+  display: none;
+}

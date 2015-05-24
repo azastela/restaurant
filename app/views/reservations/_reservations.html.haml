@@ -1,0 +1,27 @@
+%table.reservation-table.js-reservation-table.table.table-striped{data: {table_id: @table_id}}
+  %thead{class: ('concealed' unless @reservations.present?)}
+    %tr
+      %th
+        = t('common.from')
+      %th
+        = t('common.to')
+      %th
+  %tbody
+  - if @reservations.present?
+    - @reservations.each do |reservation|
+      %tr.reservation
+        %td.date-cell
+          = l(reservation.start_time, format: t('time.formats.default'))
+        %td.date-cell
+          = l(reservation.end_time, format: t('time.formats.default'))
+        %td.buttons-block
+          %a.btn.btn-primary.btn-sm.js-edit-reservation-btn{href: '#', data: {reservation_id: reservation.id, start_time: l(reservation.start_time, format: t('time.formats.long')), end_time: l(reservation.end_time, format: t('time.formats.long'))}}
+            %span.glyphicon.glyphicon-edit
+          = link_to reservation_path(reservation), method: :delete, remote: true, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger btn-sm js-delete-reservation-btn' do
+            %span.glyphicon.glyphicon-remove
+  - else
+    %tr.js-empty-row
+      %td{colspan: 3}
+        .js-new-reservation
+          = t('reservation.no_reservations')
+%a.btn.btn-sm.btn-primary.js-new-reservation-btn{href: '#'}= t('common.add_new')

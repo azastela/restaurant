@@ -17,14 +17,16 @@ class Reservation < ActiveRecord::Base
   validates_datetime :start_time, after: :now
   validates_datetime :end_time, after: :start_time
 
+  scope :by_table, -> (table_id) { where(table_id: table_id) }
+
   validate :validate_time_overlapping
 
   def validate_time_overlapping
-  	reservations = Reservation.where("start_time <= :end_time AND :start_time <= end_time AND table_id = :table_id",
-              		end_time: end_time, start_time: start_time, table_id: table_id)
+  	reservations = Reservation.where("start_time <= :end_time AND :start_time <= end_time AND table_id = :table_id AND id NOT IN(:id)",
+              		end_time: end_time, start_time: start_time, table_id: table_id, id: id.present? ? id : 0)
 
   	errors.add :start_time, :time_overlapped if reservations.size > 0
   end
 
-  TABLES_COUNT = 5.freeze
+  TABLES_COUNT = 4.freeze
 end

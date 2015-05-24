@@ -12,4 +12,27 @@
  *
  *= require_tree .
  *= require_self
+ *= require gritter
  */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "bootstrap-datetimepicker";
+
+
+.popover {
+  max-width: 600px;
+  width: auto;
+}
+
+.table tbody>tr>td.date-cell {
+    vertical-align: middle;
+}
+
+.form-group {
+  margin-bottom: 0;
+  .help-block {
+    max-width: 150px;
+    width: auto;
+  }
+}

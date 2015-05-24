@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  resources :reservations
+  resources :reservations do
+    get 'list/:table_id', to: :list, on: :collection, as: :list
+  end
+
   root 'reservations#index'
 
   # Example of regular route:

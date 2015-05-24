@@ -199,7 +199,7 @@ en:
   time:
     am: am
     formats:
-      default: "%a, %d %b %Y %H:%M:%S %z"
+      default: "%d/%m/%Y %H:%M"
       long: "%B %d, %Y %H:%M"
       short: "%d %b %H:%M"
     pm: pm
@@ -208,3 +208,11 @@ en:
       models:
         reservation:
           time_overlapped: 'time overlapped'
+  common:
+    add_new: Add New
+    from: From
+    to: To
+  reservation:
+    reservations: Reservations
+    table: "Table %{id}"
+    no_reservations: No reservations yet

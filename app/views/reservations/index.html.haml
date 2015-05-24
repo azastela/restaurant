@@ -1,0 +1,7 @@
+- (1..Reservation::TABLES_COUNT).each_slice(2) do |slice|
+  .row
+    - slice.each do |table_id|
+      .col-md-6
+        .restaurant-table
+          %button.btn.btn-primary.btn-lg.center-block.js-manage-btn{type: 'button', data: {toggle: 'popover', trigger: 'click', placement: 'bottom', title: t('reservation.table', id: table_id), url: list_reservations_path(table_id: table_id)}}= t('reservation.reservations')
+
