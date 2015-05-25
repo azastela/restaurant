@@ -19,7 +19,6 @@ Restaurant.reservations_controller ?=
 
     $(document).on 'click', '.js-save-reservation-btn', (e) =>
       e.preventDefault()
-      debugger
       tr = $(e.target).closest('tr')
 
       tableId = tr.closest('.js-reservation-table').data('table-id')
@@ -49,12 +48,10 @@ Restaurant.reservations_controller ?=
           manageButton.popover('destroy')
           $.gritter.add({ title: 'Reservation management', text: message, image: '/assets/success.png'})
         error: (data) =>
-          debugger
           @renderErrors(tr, $.parseJSON(data.responseText))
 
     $(document).on 'click', '.js-edit-reservation-btn', (e) =>
       e.preventDefault()
-      debugger
       btn = $(e.currentTarget)
       reservationId = btn.data('reservation-id')
       startTime = btn.data('start-time')
@@ -100,8 +97,6 @@ Restaurant.reservations_controller ?=
         btn.popover('show')
 
   renderErrors: (tr, errors) ->
-    debugger
     for field, messages of errors
-      debugger
       input = tr.find('input[name="' + field + '"]')
       input.closest('.form-group').addClass('has-error').find('.help-block').html(messages[0])
